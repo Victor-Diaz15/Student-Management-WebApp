@@ -1,0 +1,12 @@
+<div class="d-flex rounded-3 flex-column my-5 align-items-center justify-content-center bg-light">
+    <div>
+        <h2 class="my-4 text-center">Top Heroes</h2>
+        <ul style="padding-left: 0px;">
+            <div id="container-list" class="d-sm-flex mb-5 p-2 flex-row justify-content-around align-items-center">
+                <li id="list" *ngFor="let hero of heroes" class="my-3 mx-3 px-3" routerLink="/detail/{{hero?.id}}">
+                    {{hero?.name}}
+                </li>
+            </div>
+        </ul>
+    </div>
+</div>

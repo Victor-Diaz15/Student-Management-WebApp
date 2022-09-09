@@ -1,0 +1,9 @@
+.active {
+    color: rgba(0, 0, 0, .9);
+    font-size: 1.2rem;
+}
+
+.nav-item {
+    margin: 0px 0px 0px 10px;
+    text-decoration: none;
+}

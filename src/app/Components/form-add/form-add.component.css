@@ -1,0 +1,16 @@
+#form {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+#btnAdd {
+    background-color: #105652;
+    color: white;
+}
+
+@media only screen and (max-width: 580px) {
+    #items {
+        flex-direction: column !important;
+        gap: 10px;
+    }
+}

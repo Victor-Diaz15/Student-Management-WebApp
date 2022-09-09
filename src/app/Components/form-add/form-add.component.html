@@ -1,0 +1,6 @@
+<form id="form" class="container-fluid d-sm-flex align-items-sm-center justify-content-center my-2 col-8">
+    <div id="items" class="d-flex mb-2 flex-row justify-content-between w-100">
+        <input type="text" #newHero id="newHero" name="newHero" class="form-control me-2 w-100" placeholder="Add New Hero">
+        <button id="btnAdd" type="submit" class="btn hover" (click)="addNewHero(newHero.value); newHero.value='' ">Add</button>
+    </div>
+</form>
