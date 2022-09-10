@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+//Components
+import { StudentComponent } from 'src/app/Components/student/student.component';
+
 const routes: Routes = [
 
-  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  // {
-  //   path: 'dashboard',
-  //   component: DashboardComponent
-  // },
+  { path: '', redirectTo: '/student', pathMatch: 'full' },
+  {
+    path: 'student',
+    component: StudentComponent
+  },
   // {
   //   path: 'heroes',
   //   component: HeroesComponent

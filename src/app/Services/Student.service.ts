@@ -15,7 +15,7 @@ export class StudentService {
   private readonly apiUrl : string = `${this.baseApi}/${this.controller}`;
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Accept': '/*/', 'Content-Type': 'application/json' })
   };
   
   constructor(
@@ -24,7 +24,7 @@ export class StudentService {
 
   //method to get the data from server
   GetStudents(): Observable<IStudent[]> {
-    return this.http.get<IStudent[]>(this.apiUrl);
+    return this.http.get<IStudent[]>(this.apiUrl, this.httpOptions);
   }
 
   // get a only one student
