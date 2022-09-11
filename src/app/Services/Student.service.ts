@@ -4,6 +4,7 @@ import { Observable, pipe, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { IFilter } from '../Interfaces/IFilter';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,18 @@ export class StudentService {
     return this.http.get<IStudent[]>(this.apiUrl, this.httpOptions);
   }
 
+  GetStudentsWithFilter(filter: IFilter): Observable<IStudent[]> {
+    if(filter.firstName)
+    {
+      return this.http.get<IStudent[]>(`${this.apiUrl}?firstName=${filter.firstName}`, this.httpOptions);
+    }
+    else if(filter.lastName)
+    {
+      return this.http.get<IStudent[]>(`${this.apiUrl}?lastName=${filter.lastName}`, this.httpOptions);
+    }
+    return this.http.get<IStudent[]>(this.apiUrl, this.httpOptions);
+  }
+
   // get a only one student
   GetStudent(id: number): Observable<IStudent> {
     return this.http.get<IStudent>(`${this.apiUrl}/${id}`);
@@ -45,7 +58,7 @@ export class StudentService {
   
   //update a student
   UpdateStudent(student: IStudent): Observable<void>{
-    return this.http.put<void>(this.apiUrl, student, this.httpOptions)
+    return this.http.put<void>(`${this.apiUrl}/${student.id}`, student, this.httpOptions)
   }
 
   //delete a student

@@ -44,8 +44,8 @@ export class SubjectService {
   }
   
   //update a subject
-  UpdateSubject(subject: ISubject): Observable<void>{
-    return this.http.put<void>(this.apiUrl, subject, this.httpOptions)
+  UpdateSubject(subject: ISubject): Observable<ISubject>{
+    return this.http.put<ISubject>(`${this.apiUrl}/${subject.id}`, subject, this.httpOptions)
   }
 
   //delete a subject

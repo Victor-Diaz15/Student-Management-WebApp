@@ -1,0 +1,8 @@
+<form id="form" class="d-flex flex-column gap-3 align-items-center justify-content-center my-2">
+    <input type="text" #firstName id="firstName" name="firstName" class="form-control w-100" placeholder="Nombre" [(ngModel)]="student.firstName">
+    <input type="text" #lastName id="lastName" name="lastName" class="form-control w-100" placeholder="Apellido" [(ngModel)]="student.lastName">
+    <div class="gap-4 d-flex justify-content-center align-items-center my-2">
+        <button type="submit" class="btn green hover" (click)="UpdateStudent()">Editar Estudiante</button>
+        <button class="btn green hover" (click)="goBack()">Back</button>
+    </div>
+</form>

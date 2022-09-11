@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 //Components
 import { StudentComponent } from 'src/app/Components/student/student.component';
+import { FormEditComponent } from './Components/form-edit/form-edit.component';
+import { SubjectComponent } from './Components/subject/subject.component';
 
 const routes: Routes = [
 
@@ -11,14 +13,14 @@ const routes: Routes = [
     path: 'student',
     component: StudentComponent
   },
-  // {
-  //   path: 'heroes',
-  //   component: HeroesComponent
-  // },
-  // {
-  //   path: 'detail/:id',
-  //   component: HeroDetailComponent
-  // }
+  {
+    path: 'subject',
+    component: SubjectComponent
+  },
+  {
+    path: 'updateStudent/:id',
+    component: FormEditComponent
+  }
 
 ];
 

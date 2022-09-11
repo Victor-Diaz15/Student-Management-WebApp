@@ -10,15 +10,24 @@ import { IStudent } from 'src/app/Interfaces/IStudent';
 })
 export class FormAddComponent implements OnInit {
   
-  @Output() newHero = new EventEmitter<string>();
+  @Output() newStudent = new EventEmitter<IStudent>();
+  _newStudent: IStudent = {
+    id: 0,
+    firstName: '',
+    lastName: ''
+  }
+  
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  addNewHero(hero: string){
-    this.newHero.emit(hero);
+  addNewStudent(firstName: string, lastName: string)
+  {
+    console.log(firstName);
+    console.log(lastName);
+    this._newStudent.firstName = firstName;
+    this._newStudent.lastName = lastName;
+    this.newStudent.emit(this._newStudent);
   }
-
-
 }
