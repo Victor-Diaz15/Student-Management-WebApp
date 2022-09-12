@@ -46,7 +46,7 @@ export class StudentSubjectService {
   
   //update a studentSubject
   UpdateStudentSubject(studentSubject: IStudentSubject): Observable<void>{
-    return this.http.put<void>(this.apiUrl, studentSubject, this.httpOptions)
+    return this.http.put<void>(`${this.apiUrl}/${studentSubject.id}`, studentSubject, this.httpOptions)
   }
 
   //delete a studentSubject

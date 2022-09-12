@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 //Components
 import { StudentComponent } from 'src/app/Components/student/student.component';
 import { FormEditComponent } from './Components/form-edit/form-edit.component';
+import { StudentSubjectComponent } from './Components/student-subject/student-subject.component';
 import { SubjectComponent } from './Components/subject/subject.component';
 
 const routes: Routes = [
@@ -20,7 +21,12 @@ const routes: Routes = [
   {
     path: 'updateStudent/:id',
     component: FormEditComponent
+  },
+  {
+    path: 'studentSubject',
+    component: StudentSubjectComponent
   }
+
 
 ];
 

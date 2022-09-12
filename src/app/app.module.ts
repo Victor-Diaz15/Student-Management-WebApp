@@ -13,6 +13,7 @@ import { StudentComponent } from './Components/student/student.component';
 import { FormAddComponent } from './Components/form-add/form-add.component';
 import { SubjectComponent } from './Components/subject/subject.component';
 import { FormEditComponent } from './Components/form-edit/form-edit.component';
+import { StudentSubjectComponent } from './Components/student-subject/student-subject.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormEditComponent } from './Components/form-edit/form-edit.component';
     StudentComponent,
     FormAddComponent,
     SubjectComponent,
-    FormEditComponent
+    FormEditComponent,
+    StudentSubjectComponent
   ],
   imports: [
     BrowserModule,
