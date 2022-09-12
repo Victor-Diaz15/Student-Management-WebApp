@@ -20,7 +20,7 @@ export class StudentComponent implements OnInit {
   constructor(private studentService: StudentService) { }
 
   ngOnInit() {
-    this.GetStudents();
+    this.GetStudentsWithFilter(this.filter.firstName, this.filter.lastName);
   }
 
   GetStudents(){
@@ -45,19 +45,20 @@ export class StudentComponent implements OnInit {
     if (!student.firstName || !student.lastName){
       Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'Required field**'
+        title: 'Error',
+        text: 'Campo Requerido'
       })
     }
     else{
       this.studentService.AddStudent(student)
       .subscribe();
       Swal.fire(
-        'Perfect!',
-        'You add a new student!',
+        'Perfecto!',
+        'Estudiante Agregado',
         'success'
       );
     }
+    this.GetStudentsWithFilter(this.filter.firstName, this.filter.lastName);
   }
 
 
@@ -71,13 +72,15 @@ export class StudentComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'si, borrar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.studentService.DeleteStudent(student.id).subscribe();
-        Swal.fire('Deleted!', 'The student has been deleted.', 'success');
+        this.studentService.DeleteStudent(student.id)
+        .subscribe(() =>this.GetStudentsWithFilter(this.filter.firstName, this.filter.lastName));
+        Swal.fire('Borrado!', 'El estudiante ha sido borrado.', 'success');
       } 
     });
+    
   }
   
 }

@@ -1,7 +1,7 @@
 <div class="rounded-3 d-flex flex-row justify-content-center align-items-center p-3 my-3 bg-light">
     <div class="container-fluid bg-dark-light">
         <h2 class="text-center mb-2"> Materias </h2>
-        <form id="form" class="d-sm-flex align-items-sm-center justify-content-center my-2">
+        <form id="form" class="d-sm-flex col-6 offset-3 align-items-sm-center justify-content-center my-2">
             <div id="items" class="d-flex mb-2 flex-row justify-content-center w-50">
                 <input type="text" #name id="firstName" name="firstName" class="form-control me-2 w-100" placeholder="Nombre de la materia">
             </div>
@@ -10,15 +10,20 @@
           </button>
         </form>
         <ul class="list-group d-flex align-items-center justify-content-center mb-2">
-            <li id="link" class="list-group-item col-8 mb-2" *ngFor="let subject of subjects">
+            <li id="link" class="list-group-item col-6 mb-2" *ngFor="let subject of subjects">
                 <div id="items" class="d-sm-flex flex-row align-items-center justify-content-between ">
                     <div class="center">
                         <span id="nStudent"> {{subject.name}}</span>
                     </div>
-                    <div class="d-flex gap-3" *ngIf="subject.id > 4">
+                    <div class="d-flex gap-3" *ngIf="subject.id > 4;else message">
                         <button id="btnedit" (click)="EditSubject(subject)" class="btn btn-info hover">Editar</button>
-                        <button id="btndelete" (click)="DeleteSubject(subject)" class="btn btn-danger hover">Delete</button>
+                        <button id="btndelete" (click)="DeleteSubject(subject)" class="btn btn-danger hover">Eliminar</button>
                     </div>
+                    <ng-template #message>
+                        <div class="d-flex gap-3">
+                            <p class="text-danger">Estos registros no se pueden eliminar ni editar.</p>
+                        </div>
+                    </ng-template>
                 </div>
             </li>
         </ul>

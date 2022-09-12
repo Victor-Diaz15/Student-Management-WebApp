@@ -4,6 +4,7 @@ import { Observable, pipe, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { IStudentListRes } from '../Interfaces/IStudentListRes';
 
 @Injectable({
   providedIn: 'root'
@@ -23,24 +24,18 @@ export class StudentListService {
     ) { }
 
   //method to get the data from server
-  GetStudentLists(): Observable<IStudentList[]> {
-    return this.http.get<IStudentList[]>(this.apiUrl);
+  GetStudentLists(): Observable<IStudentListRes[]> {
+    return this.http.get<IStudentListRes[]>(this.apiUrl);
   }
 
   // get a only one studentList
-  GetStudentList(id: number): Observable<IStudentList> {
-    return this.http.get<IStudentList>(`${this.apiUrl}/${id}`);
+  GetStudentList(id: number): Observable<IStudentListRes> {
+    return this.http.get<IStudentListRes>(`${this.apiUrl}/${id}`);
   }
 
   //method to add new studentList at the list
   AddStudentList(studentList: IStudentList): Observable<IStudentList>{
     return this.http.post<IStudentList>(this.apiUrl, studentList, this.httpOptions)
-    .pipe(
-      catchError((error) => {
-        console.log(error.error.message);
-        return throwError(() => new error);
-      })
-    );
   }
   
   //update a studentList

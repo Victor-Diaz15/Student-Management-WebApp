@@ -1,10 +1,10 @@
-<div class="rounded-3 gap-5 d-flex flex-row justify-content-center align-items-center bg-light">
+<div class="rounded-3 m-4 gap-5 d-flex flex-row justify-content-center align-items-center bg-light">
     <div class="">
         <h2 class="text-center mb-2"> Agregar Estudiante </h2>
-        <app-form-add class="col-4" (newStudent)="addNewStudent($event)"></app-form-add>
+        <app-form-add class="col-4  mt-4 " (newStudent)="addNewStudent($event)"></app-form-add>
     </div>
     <div class="bg-dark-light col-6">
-        <h2 class="text-center mb-2"> Students </h2>
+        <h2 class="text-center mb-2"> Estudiantes </h2>
         <form id="form" class="container-fluid d-sm-flex align-items-sm-center justify-content-center my-2 col-8">
             <div id="items" class="d-flex mb-2 flex-row justify-content-between w-100">
                 <input type="text" #firstName id="firstName" name="firstName" class="form-control me-2 w-100" placeholder="Nombre">
@@ -16,7 +16,7 @@
                 Filtrar
             </button>
         </form>
-        <ul class="list-group d-flex align-items-center justify-content-center mb-2">
+        <ul class="list-group d-flex align-items-center justify-content-center mb-4">
             <li id="link" class="list-group-item col-8 " *ngFor="let student of students">
                 <div id="items" class="d-sm-flex flex-row align-items-center justify-content-between ">
                     <div class="center">
@@ -24,7 +24,7 @@
                     </div>
                     <div class="d-flex gap-2">
                         <button routerLink="/updateStudent/{{student.id}}" id="btnedit" class="btn btn-info hover">Editar</button>
-                        <button (click)="DeleteStudent(student)" id="btndelete" class="btn btn-danger hover">Delete</button>
+                        <button (click)="DeleteStudent(student)" id="btndelete" class="btn btn-danger hover">Eliminar</button>
                     </div>
                 </div>
             </li>

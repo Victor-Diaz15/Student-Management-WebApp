@@ -46,7 +46,7 @@ export class StudentSubjectComponent implements OnInit {
     name: ''
   }
 
-  grade: string = '0';
+  grade: string = 'Nota';
   editMode: boolean = false;
 
   constructor(
@@ -56,6 +56,12 @@ export class StudentSubjectComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.GetData();
+    this.GetStudents();
+    this.GetSubjects();
+  }
+
+  GetAll(){
     this.GetData();
     this.GetStudents();
     this.GetSubjects();
@@ -88,16 +94,16 @@ export class StudentSubjectComponent implements OnInit {
     if (this.student.id == 0 || this.subject.id == 0){
       Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'Required field**'
+        title: 'Error',
+        text: 'Campo Requerido'
       })
     }
     else{
       this.studentSubjectService.AddStudentSubject(studentSubject)
-      .subscribe();
+      .subscribe(() => this.GetAll());
       Swal.fire(
-        'Perfect!',
-        'You add a new student subject!',
+        'Perfecto!',
+        'Registro Guardado',
         'success'
       );
     }
@@ -133,15 +139,19 @@ export class StudentSubjectComponent implements OnInit {
     if (this.studentSubject.studentId == 0 || this.studentSubject.subjectId == 0){
       Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'Required field**'
+        title: 'Error',
+        text: 'Campo Requerido'
       })
     }
     else{
       this.studentSubjectService.UpdateStudentSubject(this.studentSubject)
-      .subscribe();
+      .subscribe(() => {
+        this.GetAll();
+        this.CancelEdit();
+      });
       Swal.fire(
-        'Perfect!',
+        'Perfecto!',
+        'Registro Editado',
         'success'
       );
     }
@@ -164,11 +174,12 @@ export class StudentSubjectComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'si, borrar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.studentSubjectService.DeleteStudentSubject(id).subscribe();
-        Swal.fire('Deleted!', 'El registro se ha eliminado.', 'success');
+        this.studentSubjectService.DeleteStudentSubject(id)
+        .subscribe(() => this.GetAll());
+        Swal.fire('Borrado!', 'El registro se ha eliminado.', 'success');
       } 
     });
   }

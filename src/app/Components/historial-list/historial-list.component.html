@@ -1,0 +1,36 @@
+<div class="row rounded-3 mx-3 bg-light mt-4">
+    <div *ngIf="studentLists.length == 0; else data">
+        <h3 class="text-center text-danger">No existen registros</h3>
+    </div>
+    <ng-template #data>
+        <div class="col-8 mx-auto">
+            <button routerLink="/studentList" class="btn btn-secondary mt-4 w-100">Volver atras</button>
+            <table class="table table-striped p-4 my-4">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th class="text-center" scope="col">Id Estudiante</th>
+                        <th scope="col">Nombre Estudiante</th>
+                        <th scope="col">Presente</th>
+                        <th scope="col">Excusa</th>
+                        <th scope="col">Ausente</th>
+                        <th scope="col">Existe</th>
+                        <th scope="col">Fecha de creacion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of studentLists">
+                        <th>{{data.id}}</th>
+                        <th class="text-center">{{data.studentId}}</th>
+                        <th>{{data.studentName}}</th>
+                        <th>{{data.present}}</th>
+                        <th>{{data.excuse}}</th>
+                        <th>{{data.ausence}}</th>
+                        <th>{{data.studentExist}}</th>
+                        <th>{{data.created}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-template>
+</div>

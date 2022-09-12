@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 //Components
 import { StudentComponent } from 'src/app/Components/student/student.component';
 import { FormEditComponent } from './Components/form-edit/form-edit.component';
+import { HistorialListComponent } from './Components/historial-list/historial-list.component';
+import { StudentListComponent } from './Components/student-list/student-list.component';
 import { StudentSubjectComponent } from './Components/student-subject/student-subject.component';
 import { SubjectComponent } from './Components/subject/subject.component';
 
@@ -25,8 +27,15 @@ const routes: Routes = [
   {
     path: 'studentSubject',
     component: StudentSubjectComponent
+  },
+  {
+    path: 'studentList',
+    component: StudentListComponent
+  },
+  {
+    path: 'historialList',
+    component: HistorialListComponent
   }
-
 
 ];
 

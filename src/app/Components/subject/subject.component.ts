@@ -31,20 +31,21 @@ export class SubjectComponent implements OnInit {
     if (!name){
       Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'Required field**'
+        title: 'Error',
+        text: 'Campo Requerido'
       })
     }
     else{
       this.subject.name = name.trim();
       this.subjectService.AddSubject(this.subject)
-      .subscribe();
+      .subscribe(() => this.GetSubjects());
       Swal.fire(
-        'Perfect!',
-        'You add a new subject!',
+        'Perfecto!',
+        'Registro Guardado',
         'success'
       );
     }
+    
   }
 
   //this is an async method for edit a subject
@@ -61,7 +62,7 @@ export class SubjectComponent implements OnInit {
       subject.name = text;
       console.log(subject);
       this.subjectService.UpdateSubject(subject).subscribe();
-      Swal.fire('Edited!', 'Your task has been edited.', 'success');
+      Swal.fire('Editado', 'Registro Editado', 'success');
     }
   }
   
@@ -75,14 +76,14 @@ export class SubjectComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'si, borrar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.subjectService.DeleteSubject(subject.id).subscribe();
-        Swal.fire('Deleted!', 'The student has been deleted.', 'success');
+        this.subjectService.DeleteSubject(subject.id)
+        .subscribe(() => this.GetSubjects());
+        Swal.fire('Borrado', 'Registro eliminado', 'success');
       } 
     });
-    this.GetSubjects();
   }
 
 

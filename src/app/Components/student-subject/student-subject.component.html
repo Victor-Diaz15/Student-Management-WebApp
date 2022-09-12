@@ -1,8 +1,8 @@
 <div class="rounded-3 d-flex flex-row justify-content-center align-items-center p-3 my-3 bg-light">
     <div class="container-fluid bg-dark-light">
-        <h2 class="text-center mb-2"> Estudiantes y Materias </h2>
         <div *ngIf="editMode == false; else edit">
-            <form id="form" class="d-sm-flex align-items-sm-center justify-content-center my-2">
+            <h2 class="text-center mb-2"> Estudiantes y Materias </h2>
+            <form id="form" class="d-sm-flex gap-2 align-items-center justify-content-center my-3">
                 <select class="form-select" aria-label="Default select example" [(ngModel)]="student.id" [ngModelOptions]="{standalone: true}">
                     <option value="0" selected>Selecciona un estudiante</option>
                     <option #studentId id="studentId" name="studentId" *ngFor="let student of students" [value]="student.id">
@@ -15,20 +15,17 @@
                         {{subject.name}}
                     </option>
                 </select>
-                <div id="items" class="d-flex mb-2 flex-row justify-content-center w-50">
-                    <input type="number" id="grade" name="grade" class="form-control me-2 w-100" placeholder="Nota" [(ngModel)]="grade" [ngModelOptions]="{standalone: true}">
+                <div id="items" class="d-flex flex-row justify-content-center w-50">
+                    <input type="number" id="grade" name="grade" class="form-control w-100" placeholder="Nota" [(ngModel)]="grade" [ngModelOptions]="{standalone: true}">
                 </div>
-                <button id="btnAdd" type="submit" (click)="AddNewStudentSub()" class="btn hover mb-2 ">
+                <button id="btnAdd" type="submit" (click)="AddNewStudentSub()" class="btn btn-success hover">
                   Agregar
                 </button>
             </form>
         </div>
         <ng-template #edit>
-            <h3 class="my-2">Editando Registro de id: {{studentSubject.id}} </h3>
-            <button id="btnAdd" type="submit" (click)="CancelEdit()" class="btn hover mb-2 ">
-                Cancelar
-              </button>
-            <form id="form" class="d-sm-flex align-items-sm-center justify-content-center my-2">
+            <h3 class="text-center my-3">Editando Registro de id: {{studentSubject.id}} </h3>
+            <form id="form" class="d-sm-flex gap-3 align-items-sm-center justify-content-center my-2">
                 <select class="form-select" aria-label="Default select example" [(ngModel)]="student.id" [ngModelOptions]="{standalone: true}">
                     <option value="0" selected>Selecciona un estudiante</option>
                     <option #studentId id="studentId" name="studentId" *ngFor="let student of students" [value]="student.id">
@@ -41,50 +38,57 @@
                         {{subject.name}}
                     </option>
                 </select>
-                <div id="items" class="d-flex mb-2 flex-row justify-content-center w-50">
+                <div id="items" class="d-flex flex-row justify-content-center w-50">
                     <input type="number" id="grade" name="grade" class="form-control me-2 w-100" placeholder="Nota" [(ngModel)]="grade" [ngModelOptions]="{standalone: true}">
                     <input hidden type="number" id="id" name="id" class="form-control me-2 w-100" placeholder="Nota" [(ngModel)]="studentSubject.id" [ngModelOptions]="{standalone: true}">
                 </div>
-                <button id="btnAdd" type="submit" (click)="UpdateStudentSub()" class="btn hover mb-2 ">
-                  Editar
-                </button>
+                <div class="d-flex gap-2 justify-content-center align-items-center">
+                    <button id="btnAdd" type="submit" (click)="UpdateStudentSub()" class="btn btn-success hover">
+                        Guardar
+                      </button>
+                    <button id="btnAdd" type="submit" (click)="CancelEdit()" class="btn btn-secondary hover">
+                        Cancelar
+                      </button>
+                </div>
             </form>
         </ng-template>
-        <div *ngIf="studentSubjects.length == 0; else data">
-            <h3 class="text-center text-danger">No existen registros</h3>
+        <div class="bg-ligth mt-4">
+            <div *ngIf="studentSubjects.length == 0; else data">
+                <h3 class="text-center text-danger">No existen registros</h3>
+            </div>
+            <ng-template #data>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre Estudiante</th>
+                            <th scope="col">Materia</th>
+                            <th scope="col">Nota</th>
+                            <th scope="col">Literal</th>
+                            <th class="text-center" scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of studentSubjects">
+                            <th>{{data.id}}</th>
+                            <th>{{data.studentName}}</th>
+                            <th>{{data.subjectName}}</th>
+                            <th>{{data.grade}}</th>
+                            <th>{{data.literal}}</th>
+                            <th>
+                                <div class="d-flex justify-content-start w-100">
+                                    <button (click)="GetStudentSub(data.id)" class="btn btn-sm btn-info me-2 w-100">
+                                       Editar
+                                   </button>
+                                    <button (click)="DeleteStudentSub(data.id)" class="btn btn-sm btn-danger me-2 w-100">
+                                       Eliminar
+                                   </button>
+                                </div>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </ng-template>
         </div>
-        <ng-template #data>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre Estudiante</th>
-                        <th scope="col">Materia</th>
-                        <th scope="col">Nota</th>
-                        <th scope="col">Literal</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let data of studentSubjects">
-                        <th>{{data.id}}</th>
-                        <th>{{data.studentName}}</th>
-                        <th>{{data.subjectName}}</th>
-                        <th>{{data.grade}}</th>
-                        <th>{{data.literal}}</th>
-                        <th>
-                            <div class="d-flex justify-content-start w-100">
-                                <button (click)="GetStudentSub(data.id)" class="btn btn-sm btn-info me-2 w-100">
-                                   Editar
-                               </button>
-                                <button (click)="DeleteStudentSub(data.id)" class="btn btn-sm btn-danger me-2 w-100">
-                                   Eliminar
-                               </button>
-                            </div>
-                        </th>
-                    </tr>
-                </tbody>
-            </table>
-        </ng-template>
     </div>
 </div>

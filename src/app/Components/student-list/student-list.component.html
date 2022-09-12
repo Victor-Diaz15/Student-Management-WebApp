@@ -1,0 +1,52 @@
+<div class="row rounded-3 mx-3 bg-light mt-4">
+    <div *ngIf="students.length == 0; else data">
+        <h3 class="text-center text-danger">No existen estudiantes</h3>
+    </div>
+    <ng-template #data>
+        <div class="col-8 mx-auto">
+            <button routerLink="/historialList" class="btn btn-secondary my-4 w-100">Ver Historial de Lista</button>
+            <div class="d-flex justify-content-center align-items-center gap-3">
+                <div class="form-check">
+                    <input class="form-check-input" value="true" [(ngModel)]="studentList.present" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                  Presente
+                </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" value="true" [(ngModel)]="studentList.excuse" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                  Excusa
+                </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" value="true" [(ngModel)]="studentList.ausence" type="checkbox" name="flexRadioDefault" id="flexRadioDefault3">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                  Ausente
+                </label>
+                </div>
+            </div>
+            <table class="table table-striped p-4 my-4">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th class="text-center" scope="col">Nombre Estudiante</th>
+                        <th class="text-center" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of students">
+                        <th>{{data.id}}</th>
+                        <th class="text-center">{{data.firstName}}</th>
+                        <th>
+                            <div class="d-flex justify-content-center align-items-center gap-3">
+                                <button (click)="AddNewList(data.id)" class="btn btn-sm btn-success text-center">
+                                Agregar
+                                </button>
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-template>
+</div>

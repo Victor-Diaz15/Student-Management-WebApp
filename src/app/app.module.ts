@@ -14,6 +14,8 @@ import { FormAddComponent } from './Components/form-add/form-add.component';
 import { SubjectComponent } from './Components/subject/subject.component';
 import { FormEditComponent } from './Components/form-edit/form-edit.component';
 import { StudentSubjectComponent } from './Components/student-subject/student-subject.component';
+import { StudentListComponent } from './Components/student-list/student-list.component';
+import { HistorialListComponent } from './Components/historial-list/historial-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { StudentSubjectComponent } from './Components/student-subject/student-su
     FormAddComponent,
     SubjectComponent,
     FormEditComponent,
-    StudentSubjectComponent
+    StudentSubjectComponent,
+    StudentListComponent,
+    HistorialListComponent
   ],
   imports: [
     BrowserModule,
